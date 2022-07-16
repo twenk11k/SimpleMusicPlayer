@@ -1,5 +1,6 @@
 object Dependencies {
     const val GRADLE = "com.android.tools.build:gradle:${Versions.GRADLE}"
+    const val GRADLE_VERSIONS = "com.github.ben-manes:gradle-versions-plugin:${Versions.GRADLE_VERSIONS}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
     const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"

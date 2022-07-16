@@ -1,3 +1,5 @@
+apply plugin: 'com.github.ben-manes.versions'
+
 buildscript {
 
     repositories {
@@ -9,6 +11,7 @@ buildscript {
     dependencies {
         classpath Dependencies.GRADLE
         classpath Dependencies.KOTLIN
+        classpath Dependencies.GRADLE_VERSIONS
     }
 }
 
