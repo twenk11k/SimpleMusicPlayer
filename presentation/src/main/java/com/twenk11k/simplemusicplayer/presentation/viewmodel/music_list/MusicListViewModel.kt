@@ -25,6 +25,10 @@ class MusicListViewModel @Inject constructor(
     val viewEffect = _viewEffect.receiveAsFlow()
 
     init {
+        requestSongs()
+    }
+
+    private fun requestSongs() {
         setState { copy(loading = true) }
         viewModelScope.launch {
             when (val result = useCase()) {
@@ -54,5 +58,21 @@ class MusicListViewModel @Inject constructor(
         val effectValue = builder()
         setState { copy(loading = false) }
         viewModelScope.launch { _viewEffect.send(effectValue) }
+    }
+
+    /**
+     * Handle events
+     */
+    fun setEvent(event: MusicListContract.MusicListEvent) {
+        when (event) {
+            is MusicListContract.MusicListEvent.SwipeRefresh -> onRefresh()
+        }
+    }
+
+    /**
+     * Start refreshing songs
+     */
+    private fun onRefresh() {
+        requestSongs()
     }
 }

@@ -6,6 +6,7 @@ object Dependencies {
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
     const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER_VIEW}"
+    const val SWIPE_REFRESH = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_REFRESH}"
     const val CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
     const val DAGGER_HILT_PLUGIN = "com.google.dagger:hilt-android-gradle-plugin:${Versions.DAGGER_HILT}"
     const val DAGGER_HILT = "com.google.dagger:hilt-android:${Versions.DAGGER_HILT}"

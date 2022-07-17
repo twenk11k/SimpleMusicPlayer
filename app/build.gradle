@@ -44,12 +44,14 @@ dependencies {
     implementation project(':network')
     implementation project(":presentation")
 
+    // Ui
     implementation Dependencies.CORE_KTX
     implementation Dependencies.APP_COMPAT
     implementation Dependencies.MATERIAL
     implementation Dependencies.CONSTRAINT_LAYOUT
     implementation Dependencies.COIL
     implementation Dependencies.RECYCLER_VIEW
+    implementation Dependencies.SWIPE_REFRESH
 
     // Dagger - Hilt
     implementation Dependencies.DAGGER_HILT

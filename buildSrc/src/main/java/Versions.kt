@@ -6,6 +6,7 @@ object Versions {
     const val MATERIAL = "1.5.0"
     const val CONSTRAINT_LAYOUT = "2.1.3"
     const val RECYCLER_VIEW = "1.2.1"
+    const val SWIPE_REFRESH = "1.1.0"
     const val CORE_KTX = "1.7.0"
     const val DAGGER_HILT = "2.42"
     const val COROUTINES = "1.5.1"

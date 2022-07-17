@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.ImageLoader
 import com.google.android.material.snackbar.Snackbar
 import com.twenk11k.simplemusicplayer.databinding.FragmentMusicListBinding
@@ -17,7 +17,7 @@ import com.twenk11k.simplemusicplayer.view.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MusicListFragment : Fragment() {
+class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var binding: FragmentMusicListBinding
 
@@ -38,8 +38,13 @@ class MusicListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setRecyclerViewAdapter()
+        setSwipeRefresh()
         observeViewState()
         observeViewEffect()
+    }
+
+    private fun setSwipeRefresh() {
+        binding.swipeRefresh.setOnRefreshListener(this)
     }
 
     private fun setRecyclerViewAdapter() {
@@ -57,7 +62,7 @@ class MusicListFragment : Fragment() {
 
     private fun render(state: MusicListContract.MusicListViewState) {
         binding.apply {
-            progressBar.isVisible = state.loading
+            swipeRefresh.isRefreshing = state.loading
             binding.rvMusic.visibility = View.VISIBLE
             adapter?.updateAdapter(state.songs)
         }
@@ -73,7 +78,6 @@ class MusicListFragment : Fragment() {
         binding.apply {
             when (effect) {
                 is MusicListContract.ViewEffect.ShowSnackBarError -> {
-                    progressBar.visibility = View.GONE
                     showSnackBar(
                         effect.error,
                         Snackbar.LENGTH_SHORT
@@ -81,5 +85,10 @@ class MusicListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onRefresh() {
+        viewModel.setEvent(MusicListContract.MusicListEvent.SwipeRefresh)
+        binding.swipeRefresh.isRefreshing = false
     }
 }
