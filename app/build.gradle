@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -36,10 +38,30 @@ android {
 
 dependencies {
 
+    implementation project(":common")
+    implementation project(":domain")
+    implementation project(":data")
+    implementation project(':network')
+    implementation project(":presentation")
+
     implementation Dependencies.CORE_KTX
     implementation Dependencies.APP_COMPAT
     implementation Dependencies.MATERIAL
     implementation Dependencies.CONSTRAINT_LAYOUT
+    implementation Dependencies.COIL
+    implementation Dependencies.RECYCLER_VIEW
+
+    // Dagger - Hilt
+    implementation Dependencies.DAGGER_HILT
+    kapt Dependencies.DAGGER_HILT_COMPILER
+
+    // Navigation
+    implementation Dependencies.NAVIGATION_FRAGMENT_KTX
+    implementation Dependencies.NAVIGATION_UI_KTX
+
+    // Lifecycles
+    implementation Dependencies.LIFECYCLE_RUNTIME
+
     testImplementation Dependencies.JUNIT
     androidTestImplementation Dependencies.JUNIT_EXT
     androidTestImplementation Dependencies.ANDROIDX_ESPRESSO

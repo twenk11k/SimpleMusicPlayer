@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+}
+
+android {
+
+    compileSdkVersion Config.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Config.minSdkVersion
+        targetSdkVersion Config.targetSdkVersion
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+}
+
+
+dependencies {
+
+    implementation project(":common")
+    implementation project(":data")
+
+    // Retrofit
+    implementation Dependencies.RETROFIT
+    implementation Dependencies.MOSHI
+    implementation Dependencies.MOSHI_CONVERTER
+
+    // Dagger - Hilt
+    implementation Dependencies.DAGGER_HILT
+    kapt Dependencies.DAGGER_HILT_COMPILER
+
+    // Okhttp
+    implementation Dependencies.OKHTTP
+    implementation Dependencies.OKHTTP_LOGGING_INTERCEPTOR
+
+    // Coroutines
+    implementation Dependencies.COROUTINES_CORE
+}

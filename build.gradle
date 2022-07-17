@@ -12,6 +12,7 @@ buildscript {
         classpath Dependencies.GRADLE
         classpath Dependencies.KOTLIN
         classpath Dependencies.GRADLE_VERSIONS
+        classpath Dependencies.DAGGER_HILT_PLUGIN
     }
 }
 

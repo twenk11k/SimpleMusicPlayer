@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins -->
+    <dimen name="margin_small">8dp</dimen>
+    <!-- Paddings -->
+    <dimen name="padding_tiny">4dp</dimen>
+    <!-- Text Sizes -->
+    <dimen name="text_size_medium">20sp</dimen>
+    <!-- Image Sizes -->
+    <dimen name="image_favorite_size">48dp</dimen>
+    <dimen name="image_cover_size">160sp</dimen>
+</resources>
