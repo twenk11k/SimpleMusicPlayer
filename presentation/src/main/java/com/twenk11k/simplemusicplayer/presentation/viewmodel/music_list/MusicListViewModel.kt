@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.twenk11k.simplemusicplayer.common.mapper.getStringResId
 import com.twenk11k.simplemusicplayer.common.util.DataResult
 import com.twenk11k.simplemusicplayer.domain.usecase.MusicUseCase
+import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,10 +19,10 @@ class MusicListViewModel @Inject constructor(
     private val useCase: MusicUseCase
 ) : ViewModel() {
 
-    private val _viewState = MutableStateFlow(MusicListContract.MusicListViewState())
-    val viewState: StateFlow<MusicListContract.MusicListViewState> get() = _viewState
+    private val _viewState = MutableStateFlow(MusicListViewState())
+    val viewState: StateFlow<MusicListViewState> get() = _viewState
 
-    private val _viewEffect: Channel<MusicListContract.ViewEffect> = Channel()
+    private val _viewEffect: Channel<ViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
 
     init {
@@ -37,7 +38,7 @@ class MusicListViewModel @Inject constructor(
                 }
                 is DataResult.Error -> {
                     val error = result.exception.getStringResId()
-                    setEffect { MusicListContract.ViewEffect.ShowSnackBarError(error) }
+                    setEffect { ViewEffect.ShowSnackBarError(error) }
                 }
             }
         }
@@ -46,7 +47,7 @@ class MusicListViewModel @Inject constructor(
     /**
      * Set new ui state
      */
-    private fun setState(reduce: MusicListContract.MusicListViewState.() -> MusicListContract.MusicListViewState) {
+    private fun setState(reduce: MusicListViewState.() -> MusicListViewState) {
         val newState = viewState.value.reduce()
         _viewState.value = newState
     }
@@ -54,7 +55,7 @@ class MusicListViewModel @Inject constructor(
     /**
      * Set new effect
      */
-    private fun setEffect(builder: () -> MusicListContract.ViewEffect) {
+    private fun setEffect(builder: () -> ViewEffect) {
         val effectValue = builder()
         setState { copy(loading = false) }
         viewModelScope.launch { _viewEffect.send(effectValue) }
@@ -63,9 +64,9 @@ class MusicListViewModel @Inject constructor(
     /**
      * Handle events
      */
-    fun setEvent(event: MusicListContract.MusicListEvent) {
+    fun setEvent(event: MusicListEvent) {
         when (event) {
-            is MusicListContract.MusicListEvent.SwipeRefresh -> onRefresh()
+            is MusicListEvent.SwipeRefresh -> onRefresh()
         }
     }
 

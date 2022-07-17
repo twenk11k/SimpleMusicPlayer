@@ -10,7 +10,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.ImageLoader
 import com.google.android.material.snackbar.Snackbar
 import com.twenk11k.simplemusicplayer.databinding.FragmentMusicListBinding
-import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract
+import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract.*
 import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListViewModel
 import com.twenk11k.simplemusicplayer.view.util.collectWhenStarted
 import com.twenk11k.simplemusicplayer.view.util.showSnackBar
@@ -60,7 +60,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
-    private fun render(state: MusicListContract.MusicListViewState) {
+    private fun render(state: MusicListViewState) {
         binding.apply {
             swipeRefresh.isRefreshing = state.loading
             binding.rvMusic.visibility = View.VISIBLE
@@ -74,10 +74,10 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
-    private fun reactTo(effect: MusicListContract.ViewEffect) {
+    private fun reactTo(effect: ViewEffect) {
         binding.apply {
             when (effect) {
-                is MusicListContract.ViewEffect.ShowSnackBarError -> {
+                is ViewEffect.ShowSnackBarError -> {
                     showSnackBar(
                         effect.error,
                         Snackbar.LENGTH_SHORT
@@ -88,7 +88,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
-        viewModel.setEvent(MusicListContract.MusicListEvent.SwipeRefresh)
+        viewModel.setEvent(MusicListEvent.SwipeRefresh)
         binding.swipeRefresh.isRefreshing = false
     }
 }
