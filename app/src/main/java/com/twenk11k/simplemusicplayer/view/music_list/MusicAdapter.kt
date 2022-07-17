@@ -2,15 +2,15 @@ package com.twenk11k.simplemusicplayer.view.music_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.load
 import com.twenk11k.simplemusicplayer.databinding.ItemMusicBinding
 import com.twenk11k.simplemusicplayer.domain.model.MusicDomainModel
 
-class MusicAdapter(val imageLoader: ImageLoader) : RecyclerView.Adapter<MusicAdapter.ViewHolder>() {
-
-    private var items = ArrayList<MusicDomainModel>()
+class MusicAdapter(val imageLoader: ImageLoader) : ListAdapter<MusicDomainModel, MusicAdapter.ViewHolder>(DIFF_UTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemMusicBinding = ItemMusicBinding.inflate(
@@ -21,16 +21,8 @@ class MusicAdapter(val imageLoader: ImageLoader) : RecyclerView.Adapter<MusicAda
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = items.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
-    fun updateAdapter(list: List<MusicDomainModel>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
+        holder.bind(getItem(position))
     }
 
     inner class ViewHolder(private val binding: ItemMusicBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -44,4 +36,18 @@ class MusicAdapter(val imageLoader: ImageLoader) : RecyclerView.Adapter<MusicAda
             }
         }
     }
+}
+
+private val DIFF_UTIL = object : DiffUtil.ItemCallback<MusicDomainModel>() {
+    override fun areItemsTheSame(
+        oldItem: MusicDomainModel,
+        newItem: MusicDomainModel
+    ) =
+        oldItem.title == newItem.title
+
+    override fun areContentsTheSame(
+        oldItem: MusicDomainModel,
+        newItem: MusicDomainModel
+    ) =
+        oldItem == newItem
 }

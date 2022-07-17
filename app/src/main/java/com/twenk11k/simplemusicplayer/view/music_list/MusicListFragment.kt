@@ -64,7 +64,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         binding.apply {
             swipeRefresh.isRefreshing = state.loading
             binding.rvMusic.visibility = View.VISIBLE
-            adapter?.updateAdapter(state.songs)
+            adapter?.submitList(state.songs)
         }
     }
 
