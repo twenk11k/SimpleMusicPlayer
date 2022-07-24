@@ -19,6 +19,9 @@ class MusicListViewModel @Inject constructor(
     private val useCase: MusicUseCase
 ) : ViewModel() {
 
+    private val currentState: MusicListViewState
+        get() = viewState.value
+
     private val _viewState = MutableStateFlow(MusicListViewState())
     val viewState: StateFlow<MusicListViewState> get() = _viewState
 
@@ -85,9 +88,9 @@ class MusicListViewModel @Inject constructor(
         viewModelScope.launch {
             useCase.storeFavoriteMusic(title)
             // At first, Set isFavorite to false in the whole songs list then set it to true for favorite music
-            viewState.value.songs.onEach { it.isFavorite = false }
+            currentState.songs.onEach { it.isFavorite = false }
                 .find { it.title == title }?.isFavorite = true
-            setState { copy(loadingFavorite = false, songs = viewState.value.songs.toList()) }
+            setState { copy(loadingFavorite = false, songs = currentState.songs.toList()) }
         }
     }
 
@@ -96,8 +99,8 @@ class MusicListViewModel @Inject constructor(
         viewModelScope.launch {
             useCase.clearFavorites()
             // Set isFavorite to false in the whole songs list
-            viewState.value.songs.onEach { it.isFavorite = false }
-            setState { copy(loadingFavorite = false, songs = viewState.value.songs) }
+            currentState.songs.onEach { it.isFavorite = false }
+            setState { copy(loadingFavorite = false, songs = currentState.songs) }
         }
     }
 }
