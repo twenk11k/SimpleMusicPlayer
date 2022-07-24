@@ -54,7 +54,14 @@ class MusicPlayFragment : Fragment() {
     private fun handleFavorite(isFavorite: Boolean, title: String) {
         binding.imgFavorite.run {
             this.isSelected = isFavorite
-            // TODO handle click
+            this.setOnClickListener {
+                if (!this.isSelected) {
+                    viewModel.setFavoriteMusic(title)
+                } else {
+                    viewModel.clearFavorites()
+                }
+                this.isSelected = !this.isSelected
+            }
         }
     }
 }
