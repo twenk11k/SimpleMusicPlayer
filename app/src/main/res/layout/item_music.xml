@@ -20,7 +20,7 @@
         tools:src="@drawable/oceansound" />
 
     <TextView
-        android:id="@+id/txt_audio_title"
+        android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"

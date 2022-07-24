@@ -35,7 +35,7 @@ class MusicAdapter(val imageLoader: ImageLoader, private val listener: OnItemSel
 
         fun bind(item: MusicDomainModel) {
             binding.run {
-                txtAudioTitle.text = item.title
+                txtTitle.text = item.title
                 with(imgCover) {
                     load(item.cover)
                 }
