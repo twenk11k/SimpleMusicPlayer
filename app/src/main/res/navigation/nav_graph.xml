@@ -20,7 +20,18 @@
         android:name="com.twenk11k.simplemusicplayer.view.music_play.MusicPlayFragment"
         android:label="MusicPlayFragment"
         tools:layout="@layout/fragment_music_play">
-
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="path"
+            app:argType="string" />
+        <argument
+            android:name="cover"
+            app:argType="string" />
+        <argument
+            android:name="totalDurationMs"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

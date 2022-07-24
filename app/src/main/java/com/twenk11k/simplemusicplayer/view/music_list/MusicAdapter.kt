@@ -19,7 +19,11 @@ class MusicAdapter(val imageLoader: ImageLoader, private val listener: OnItemSel
             parent,
             false
         )
-        return ViewHolder(binding)
+        return ViewHolder(binding).apply {
+            binding.root.setOnClickListener {
+                listener.navigateToMusicPlay(getItem(absoluteAdapterPosition))
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.ImageLoader
 import com.google.android.material.snackbar.Snackbar
 import com.twenk11k.simplemusicplayer.databinding.FragmentMusicListBinding
+import com.twenk11k.simplemusicplayer.domain.model.MusicDomainModel
 import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract.*
 import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListViewModel
 import com.twenk11k.simplemusicplayer.view.util.collectWhenStarted
@@ -90,6 +92,16 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OnIt
     override fun onRefresh() {
         viewModel.setEvent(MusicListEvent.SwipeRefresh)
         binding.swipeRefresh.isRefreshing = false
+    }
+
+    override fun navigateToMusicPlay(item: MusicDomainModel) {
+        val action = MusicListFragmentDirections.actionMusicListFragmentToMusicPlayFragment(
+            item.title,
+            item.audio,
+            item.cover,
+            item.totalDurationMs
+        )
+        findNavController().navigate(action)
     }
 
     override fun setFavorite(title: String) {
