@@ -17,6 +17,7 @@ object Versions {
     const val COIL = "1.2.2"
     const val OKHTTP = "4.9.1"
     const val ROOM = "2.4.2"
+    const val APACHE_COMMONS_LANG = "3.9"
 
     // Testing
     const val JUNIT = "4.13.2"

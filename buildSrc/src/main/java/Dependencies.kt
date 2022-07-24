@@ -28,6 +28,7 @@ object Dependencies {
     const val ROOM = "androidx.room:room-runtime:${Versions.ROOM}"
     const val ROOM_KTX = "androidx.room:room-ktx:${Versions.ROOM}"
     const val ROOM_COMPILER = "androidx.room:room-compiler:${Versions.ROOM}"
+    const val APACHE_COMMONS_LANG = "org.apache.commons:commons-lang3:${Versions.APACHE_COMMONS_LANG}"
 
     // Unit test
     const val JUNIT = "junit:junit:${Versions.JUNIT}"

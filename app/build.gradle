@@ -66,6 +66,9 @@ dependencies {
     // Lifecycles
     implementation Dependencies.LIFECYCLE_RUNTIME
 
+    // Apache commons
+    implementation Dependencies.APACHE_COMMONS_LANG
+
     testImplementation Dependencies.JUNIT
     androidTestImplementation Dependencies.JUNIT_EXT
     androidTestImplementation Dependencies.ANDROIDX_ESPRESSO
