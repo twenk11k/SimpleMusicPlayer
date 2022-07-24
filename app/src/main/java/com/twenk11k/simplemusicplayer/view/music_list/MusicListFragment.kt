@@ -12,8 +12,8 @@ import coil.ImageLoader
 import com.google.android.material.snackbar.Snackbar
 import com.twenk11k.simplemusicplayer.databinding.FragmentMusicListBinding
 import com.twenk11k.simplemusicplayer.domain.model.MusicDomainModel
-import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract.*
-import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListViewModel
+import com.twenk11k.simplemusicplayer.presentation.viewmodel.music.MusicContract.*
+import com.twenk11k.simplemusicplayer.presentation.viewmodel.music.MusicViewModel
 import com.twenk11k.simplemusicplayer.view.music_list.adapter.MusicAdapter
 import com.twenk11k.simplemusicplayer.view.music_list.adapter.OnItemSelectedListener
 import com.twenk11k.simplemusicplayer.view.util.collectWhenStarted
@@ -25,7 +25,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OnIt
 
     private lateinit var binding: FragmentMusicListBinding
 
-    private val viewModel by viewModels<MusicListViewModel>()
+    private val viewModel by viewModels<MusicViewModel>()
 
     private var adapter: MusicAdapter? = null
 
@@ -63,7 +63,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OnIt
         }
     }
 
-    private fun render(state: MusicListViewState) {
+    private fun render(state: MusicViewState) {
         binding.apply {
             swipeRefresh.isRefreshing = state.loading
             binding.rvMusic.visibility = View.VISIBLE
@@ -92,7 +92,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OnIt
     }
 
     override fun onRefresh() {
-        viewModel.setEvent(MusicListEvent.SwipeRefresh)
+        viewModel.setEvent(MusicEvent.SwipeRefresh)
         binding.swipeRefresh.isRefreshing = false
     }
 

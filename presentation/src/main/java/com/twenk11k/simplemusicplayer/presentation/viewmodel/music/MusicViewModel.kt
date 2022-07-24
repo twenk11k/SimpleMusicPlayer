@@ -1,11 +1,11 @@
-package com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list
+package com.twenk11k.simplemusicplayer.presentation.viewmodel.music
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.twenk11k.simplemusicplayer.common.mapper.getStringResId
 import com.twenk11k.simplemusicplayer.common.util.DataResult
 import com.twenk11k.simplemusicplayer.domain.usecase.MusicUseCase
-import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract.*
+import com.twenk11k.simplemusicplayer.presentation.viewmodel.music.MusicContract.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,15 +15,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MusicListViewModel @Inject constructor(
+class MusicViewModel @Inject constructor(
     private val useCase: MusicUseCase
 ) : ViewModel() {
 
-    private val currentState: MusicListViewState
+    private val currentState: MusicViewState
         get() = viewState.value
 
-    private val _viewState = MutableStateFlow(MusicListViewState())
-    val viewState: StateFlow<MusicListViewState> get() = _viewState
+    private val _viewState = MutableStateFlow(MusicViewState())
+    val viewState: StateFlow<MusicViewState> get() = _viewState
 
     private val _viewEffect: Channel<ViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
@@ -53,7 +53,7 @@ class MusicListViewModel @Inject constructor(
     /**
      * Set new ui state
      */
-    private fun setState(reduce: MusicListViewState.() -> MusicListViewState) {
+    private fun setState(reduce: MusicViewState.() -> MusicViewState) {
         val newState = viewState.value.reduce()
         _viewState.value = newState
     }
@@ -70,9 +70,9 @@ class MusicListViewModel @Inject constructor(
     /**
      * Handle events
      */
-    fun setEvent(event: MusicListEvent) {
+    fun setEvent(event: MusicEvent) {
         when (event) {
-            is MusicListEvent.SwipeRefresh -> onRefresh()
+            is MusicEvent.SwipeRefresh -> onRefresh()
         }
     }
 
