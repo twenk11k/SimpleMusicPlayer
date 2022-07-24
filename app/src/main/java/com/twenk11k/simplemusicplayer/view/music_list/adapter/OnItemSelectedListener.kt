@@ -1,4 +1,4 @@
-package com.twenk11k.simplemusicplayer.view.music_list
+package com.twenk11k.simplemusicplayer.view.music_list.adapter
 
 import com.twenk11k.simplemusicplayer.domain.model.MusicDomainModel
 

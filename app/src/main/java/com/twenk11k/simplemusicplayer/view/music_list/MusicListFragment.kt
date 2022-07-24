@@ -14,6 +14,8 @@ import com.twenk11k.simplemusicplayer.databinding.FragmentMusicListBinding
 import com.twenk11k.simplemusicplayer.domain.model.MusicDomainModel
 import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListContract.*
 import com.twenk11k.simplemusicplayer.presentation.viewmodel.music_list.MusicListViewModel
+import com.twenk11k.simplemusicplayer.view.music_list.adapter.MusicAdapter
+import com.twenk11k.simplemusicplayer.view.music_list.adapter.OnItemSelectedListener
 import com.twenk11k.simplemusicplayer.view.util.collectWhenStarted
 import com.twenk11k.simplemusicplayer.view.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
