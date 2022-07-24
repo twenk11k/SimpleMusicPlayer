@@ -12,7 +12,7 @@ object Versions {
     const val COROUTINES = "1.5.1"
     const val RETROFIT = "2.9.0"
     const val MOSHI = "1.13.0"
-    const val NAVIGATION = "2.4.0"
+    const val NAVIGATION = "2.5.0"
     const val LIFECYCLE = "2.4.0"
     const val COIL = "1.2.2"
     const val OKHTTP = "4.9.1"
