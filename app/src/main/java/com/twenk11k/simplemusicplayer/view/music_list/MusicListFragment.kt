@@ -99,7 +99,8 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OnIt
             item.title,
             item.audio,
             item.cover,
-            item.totalDurationMs
+            item.totalDurationMs,
+            item.isFavorite
         )
         findNavController().navigate(action)
     }

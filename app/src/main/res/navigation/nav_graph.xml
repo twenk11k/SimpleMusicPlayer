@@ -32,6 +32,9 @@
         <argument
             android:name="totalDurationMs"
             app:argType="integer" />
+        <argument
+            android:name="isFavorite"
+            app:argType="boolean" />
     </fragment>
 
 </navigation>
