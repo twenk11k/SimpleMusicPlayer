@@ -13,6 +13,7 @@ buildscript {
         classpath Dependencies.KOTLIN
         classpath Dependencies.GRADLE_VERSIONS
         classpath Dependencies.DAGGER_HILT_PLUGIN
+        classpath Dependencies.NAVIGATION_SAFE_ARGS_PLUGIN
     }
 }
 
