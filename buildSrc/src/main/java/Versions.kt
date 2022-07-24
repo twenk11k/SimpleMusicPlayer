@@ -11,11 +11,12 @@ object Versions {
     const val DAGGER_HILT = "2.42"
     const val COROUTINES = "1.5.1"
     const val RETROFIT = "2.9.0"
-    const val MOSHI = "1.12.0"
+    const val MOSHI = "1.13.0"
     const val NAVIGATION = "2.4.0"
     const val LIFECYCLE = "2.4.0"
     const val COIL = "1.2.2"
     const val OKHTTP = "4.9.1"
+    const val ROOM = "2.4.2"
 
     // Testing
     const val JUNIT = "4.13.2"

@@ -6,6 +6,7 @@ import com.twenk11k.simplemusicplayer.common.util.DataResult
 import com.twenk11k.simplemusicplayer.domain.model.MusicDomainModel
 import com.twenk11k.simplemusicplayer.domain.repository.MusicRepository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -13,7 +14,8 @@ class MusicUseCase @Inject constructor(
     private val repository: MusicRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
-    suspend operator fun invoke(): DataResult<List<MusicDomainModel>> {
+
+    suspend fun getSongs(): DataResult<List<MusicDomainModel>> {
         return when (
             val result = withContext(dispatcher) {
                 repository.getSongs()
@@ -31,4 +33,10 @@ class MusicUseCase @Inject constructor(
             }
         }
     }
+
+    suspend fun getFavoriteMusicTitle() = repository.getFavoriteMusicTitle().first()
+
+    suspend fun storeFavoriteMusic(title: String) = repository.storeFavoriteMusic(title)
+
+    suspend fun clearFavorites() = repository.clearFavorites()
 }

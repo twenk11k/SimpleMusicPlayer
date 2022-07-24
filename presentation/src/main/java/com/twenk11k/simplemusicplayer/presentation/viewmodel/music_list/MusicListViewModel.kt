@@ -32,9 +32,12 @@ class MusicListViewModel @Inject constructor(
     private fun requestSongs() {
         setState { copy(loading = true) }
         viewModelScope.launch {
-            when (val result = useCase()) {
+            when (val result = useCase.getSongs()) {
                 is DataResult.Success -> {
-                    setState { copy(noResults = false, loading = false, songs = result.data) }
+                    val favoriteMusicTitle = useCase.getFavoriteMusicTitle()
+                    // Set isFavorite to true if result.data has favorite music title
+                    result.data.find { it.title == favoriteMusicTitle }?.isFavorite = true
+                    setState { copy(loading = false, songs = result.data) }
                 }
                 is DataResult.Error -> {
                     val error = result.exception.getStringResId()
@@ -75,5 +78,26 @@ class MusicListViewModel @Inject constructor(
      */
     private fun onRefresh() {
         requestSongs()
+    }
+
+    fun setFavoriteMusic(title: String) {
+        setState { copy(loadingFavorite = true) }
+        viewModelScope.launch {
+            useCase.storeFavoriteMusic(title)
+            // At first, Set isFavorite to false in the whole songs list then set it to true for favorite music
+            viewState.value.songs.onEach { it.isFavorite = false }
+                .find { it.title == title }?.isFavorite = true
+            setState { copy(loadingFavorite = false, songs = viewState.value.songs.toList()) }
+        }
+    }
+
+    fun clearFavorites() {
+        setState { copy(loadingFavorite = true) }
+        viewModelScope.launch {
+            useCase.clearFavorites()
+            // Set isFavorite to false in the whole songs list
+            viewState.value.songs.onEach { it.isFavorite = false }
+            setState { copy(loadingFavorite = false, songs = viewState.value.songs) }
+        }
     }
 }

@@ -24,6 +24,9 @@ object Dependencies {
     const val COIL = "io.coil-kt:coil:${Versions.COIL}"
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
     const val OKHTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
+    const val ROOM = "androidx.room:room-runtime:${Versions.ROOM}"
+    const val ROOM_KTX = "androidx.room:room-ktx:${Versions.ROOM}"
+    const val ROOM_COMPILER = "androidx.room:room-compiler:${Versions.ROOM}"
 
     // Unit test
     const val JUNIT = "junit:junit:${Versions.JUNIT}"

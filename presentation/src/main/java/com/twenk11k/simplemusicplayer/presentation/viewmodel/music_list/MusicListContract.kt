@@ -14,7 +14,7 @@ class MusicListContract {
 
     data class MusicListViewState(
         val loading: Boolean = false,
-        val noResults: Boolean = false,
+        val loadingFavorite: Boolean = false,
         val songs: List<MusicDomainModel> = emptyList()
     )
 }

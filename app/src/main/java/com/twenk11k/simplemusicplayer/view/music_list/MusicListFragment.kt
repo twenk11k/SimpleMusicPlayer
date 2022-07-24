@@ -17,7 +17,7 @@ import com.twenk11k.simplemusicplayer.view.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OnItemSelectedListener {
 
     private lateinit var binding: FragmentMusicListBinding
 
@@ -49,9 +49,8 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun setRecyclerViewAdapter() {
         imageLoader = ImageLoader.Builder(requireContext()).build()
-        adapter = MusicAdapter(imageLoader)
+        adapter = MusicAdapter(imageLoader, this)
         binding.rvMusic.adapter = adapter
-        binding.rvMusic.setHasFixedSize(true)
     }
 
     private fun observeViewState() {
@@ -65,6 +64,7 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             swipeRefresh.isRefreshing = state.loading
             binding.rvMusic.visibility = View.VISIBLE
             adapter?.submitList(state.songs)
+            adapter?.notifyDataSetChanged()
         }
     }
 
@@ -90,5 +90,13 @@ class MusicListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         viewModel.setEvent(MusicListEvent.SwipeRefresh)
         binding.swipeRefresh.isRefreshing = false
+    }
+
+    override fun setFavorite(title: String) {
+        viewModel.setFavoriteMusic(title)
+    }
+
+    override fun clearFavorites() {
+        viewModel.clearFavorites()
     }
 }

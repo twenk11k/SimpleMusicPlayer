@@ -43,6 +43,7 @@ dependencies {
     implementation project(":data")
     implementation project(':network')
     implementation project(":presentation")
+    implementation project(":persistence")
 
     // Ui
     implementation Dependencies.CORE_KTX
