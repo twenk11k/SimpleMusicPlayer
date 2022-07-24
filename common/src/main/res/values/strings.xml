@@ -7,4 +7,6 @@
     <string name="service_unavailable_message">Service unavailable, please try again later</string>
     <string name="server_unreachable_message">Server unreachable, please try again later</string>
     <string name="no_more_results">No results found</string>
+    <string name="duration_start">0:00</string>
+    <string name="divide">/</string>
 </resources>
